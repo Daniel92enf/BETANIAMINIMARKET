@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const loginController = require('../controller/login.js');
-const {validateLogin} = require('../validators')
+const {validateLogin,validateRegister} = require('../validators')
 //Rutas
 router.get("/", loginController.loggedIn)
 router.get("/Registro_usuario", loginController.Pagina_Registro_usuario)
@@ -14,6 +14,7 @@ router.get("/Consultar_productos", loginController.Pagina_Consultar_producto)
 router.get("/carrito_compras", loginController.Pagina_carrito_compras)
 router.get("/Cambio_contrasena", loginController.Pagina_Cambio_contrasena)
 router.post("/Cambio_contrasena", loginController.Cambio_contrasena)
+router.post("/Registro_usuario",validateRegister, loginController.Registro_usuario)
 router.post("/inicar_sesion",validateLogin, loginController.login)
 router.get("/logout", loginController.logout)
 

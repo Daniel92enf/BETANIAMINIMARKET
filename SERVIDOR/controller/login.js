@@ -82,7 +82,7 @@ module.exports = class {
   static Pagina_chat_linea(req, res) {
 
     //res.renderice('RegistroUsuario.html', {});
-    res.renderice('Chat_Linea.html', {});
+    res.renderice('ChatLinea.html', {});
   }
 
   static Pagina_stock(req, res) {
@@ -95,6 +95,20 @@ module.exports = class {
 
     //res.renderice('RegistroUsuario.html', {});
     res.renderice('VentaCobro.html', {});
+  }
+
+  static async Registro_usuario(req, res) {
+    try {
+      const {name, email, password} = req.body;
+
+      const sql = 'INSERT INTO usuarios (name, email, password) VALUES (?, ?, ?)';      
+      const params = [name, email, password];  
+
+      await executeQuery(sql,params);
+      res.success(`Usuario ${name}`);
+    } catch (err) {
+      res.error('Error al obtener usuarios', 500, {error: err.message});
+    }
   }
 
 }

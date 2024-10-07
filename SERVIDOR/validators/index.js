@@ -26,7 +26,7 @@ module.exports = {
     valitateRequest,
     async (req, res, next) => {
       const {email_login, password_login} = req.body
-      const sql = `SELECT * FROM usuarios WHERE username='${email_login}'`;
+      const sql = `SELECT * FROM usuarios WHERE email='${email_login}'`;
 
       const params = [1]; // Ejemplo de parámetro, aquí se indica que queremos usuarios activos
 
@@ -65,6 +65,33 @@ module.exports = {
       if (password_nueva !==confirmar_password)  return res.error('Su contraseña actual no coincide', 500);
       next()
 
+    }
+  ],
+  validateRegister: [
+    body('name', 'Es necesario ingresar un usuario')
+      .notEmpty()
+      .isLength({min: 5})
+      .toLowerCase()
+      .trim(),
+    body('password', 'Es necesario ingresar una contraseña')
+      .notEmpty()
+      .isLength({min: 5})
+      .toLowerCase()
+      .trim(),
+      body('email', 'Es necesario ingresar un correo electrónico')
+      .notEmpty()      
+      .isEmail()
+      .trim(),
+    valitateRequest,
+    async (req,res,next)=>{
+      const {email} = req.body
+      const sql = `SELECT * FROM usuarios WHERE email='${email}'`;
+
+      const params = [1]; // Ejemplo de parámetro, aquí se indica que queremos usuarios activos
+
+      const [usuario] = await executeQuery(sql, params);
+      if (usuario) return res.error('Error el correo ya existe', 500);
+      next()
     }
   ]
 
