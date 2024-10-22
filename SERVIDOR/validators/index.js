@@ -90,7 +90,7 @@ module.exports = {
       const params = [1]; // Ejemplo de parámetro, aquí se indica que queremos usuarios activos
 
       const [usuario] = await executeQuery(sql, params);
-      if (usuario) return res.error('Error el correo ya existe', 500);
+      if (usuario) return res.error('Error el correo ya existe', 409);
       next()
     }
   ]

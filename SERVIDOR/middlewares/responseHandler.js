@@ -2,7 +2,7 @@ const path = require('path');
 module.exports = function (req, res, next) {
   res.error = (err, status = 500, args = {}) => {
     res.status(status).json({result: 'error', error: err.message || err, ...args})
-    console.error(err)
+    //console.log(err)
   }
 
   res.success = (message, args = {}) => {
