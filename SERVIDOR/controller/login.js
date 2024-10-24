@@ -111,4 +111,12 @@ module.exports = class {
     }
   }
 
+  static Pagina_PQRS(req, res) {
+
+    //res.renderice('RegistroUsuario.html', {});
+    res.renderice('Stock.html', {});
+  }
+
+  
+
 }
