@@ -110,11 +110,24 @@ module.exports = class {
       res.error('Error al obtener usuarios', 500, {error: err.message});
     }
   }
+  static async Pagina_Registro_trabajador(req, res) {
+    try {
+      const {name, email, password} = req.body;
+
+      const sql = 'INSERT INTO trabajador (name, email, password) VALUES (?, ?, ?)';      
+      const params = [name, email, password];  
+
+      await executeQuery(sql,params);
+      res.success(`trabajador ${name}`);
+    } catch (err) {
+      res.error('Error al obtener usuarios', 500, {error: err.message});
+    }
+  }
 
   static Pagina_PQRS(req, res) {
 
     //res.renderice('RegistroUsuario.html', {});
-    res.renderice('Stock.html', {});
+    res.renderice('PQRS.html', {});
   }
 
   

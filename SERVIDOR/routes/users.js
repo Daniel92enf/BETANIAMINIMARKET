@@ -17,6 +17,10 @@ router.get("/Cambio_contrasena", loginController.Pagina_Cambio_contrasena)
 router.post("/Cambio_contrasena", loginController.Cambio_contrasena)
 router.post("/Registro_usuario",validateRegister, loginController.Registro_usuario)
 router.post("/inicar_sesion",validateLogin, loginController.login)
+router.post("/Chat_Linea",validateLogin, loginController.login)
+router.post("/Registro_trabajador",validateRegister, loginController.Pagina_Registro_trabajador)
+
+
 router.get("/logout", loginController.logout)
 
 module.exports = router;
