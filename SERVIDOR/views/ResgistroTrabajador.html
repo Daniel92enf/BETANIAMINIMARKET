@@ -48,10 +48,10 @@
 <body>
    <h3>Registro e Inicio de Sesión para Trabajadores</h3>
     <h2>Registro de Trabajadores</h2>
-    <form action="registro_trabajador.php" method="post">
+    <form action="/Registro_trabajador" method="post">
         <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="name" required>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
@@ -68,18 +68,6 @@
         <input type="submit" value="Registrarse">
     </form>
 
-    <h2>Iniciar Sesión</h2>
-    <form action="login_trabajador.php" method="post">
-        <div class="form-group">
-            <label for="email_login">Email:</label>
-            <input type="text" id="email_login" name="email_login" required>
-        </div>
-        <div class="form-group">
-            <label for="password_login">Contraseña:</label>
-            <input type="password" id="password_login" name="password_login" required>
-        </div>
-        <input type="submit" value="Iniciar Sesión">
-    </form>
 
 </body>
 </html>

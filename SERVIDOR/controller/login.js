@@ -68,14 +68,23 @@ module.exports = class {
 
   static async Cambio_contrasena(req, res) {
     try {
-      const {password_nueva} = req.body;
-      const sql = `UPDATE usuarios SET password = '${password_nueva}' WHERE usuario = '${req.session.user}'`;
+      const {
+        session,
+        body
+      } = req
+      const {
+        password_nueva
+      } = body;
+
+      const sql = `UPDATE ${session.user.rol} SET password = '${password_nueva}' WHERE email = '${req.session.user.email}'`;
 
 
       await executeQuery(sql);
       res.success('Contraseña actualizada');
     } catch (err) {
-      res.error('Error al obtener usuarios', 500, {error: err.message});
+      res.error('Error al obtener usuarios', 500, {
+        error: err.message
+      });
     }
   }
 
@@ -99,37 +108,109 @@ module.exports = class {
 
   static async Registro_usuario(req, res) {
     try {
-      const {name, email, password} = req.body;
+      const {
+        name,
+        email,
+        password
+      } = req.body;
 
-      const sql = 'INSERT INTO usuarios (name, email, password) VALUES (?, ?, ?)';      
-      const params = [name, email, password];  
+      const sql = 'INSERT INTO usuarios (name, email, password) VALUES (?, ?, ?)';
+      const params = [name, email, password];
 
-      await executeQuery(sql,params);
+      await executeQuery(sql, params);
       res.success(`Usuario ${name}`);
     } catch (err) {
-      res.error('Error al obtener usuarios', 500, {error: err.message});
+      res.error('Error al obtener usuarios', 500, {
+        error: err.message
+      });
     }
   }
-  static async Pagina_Registro_trabajador(req, res) {
+  static async Registro_trabajador(req, res) {
     try {
-      const {name, email, password} = req.body;
+      const {
+        name,
+        email,
+        password,
+        puesto
+      } = req.body;
 
-      const sql = 'INSERT INTO trabajador (name, email, password) VALUES (?, ?, ?)';      
-      const params = [name, email, password];  
+      const sql = 'INSERT INTO trabajador (name, email, password, puesto) VALUES (?, ?, ?, ?)';
+      const params = [name, email, password, puesto];
 
-      await executeQuery(sql,params);
+      await executeQuery(sql, params);
       res.success(`trabajador ${name}`);
     } catch (err) {
-      res.error('Error al obtener usuarios', 500, {error: err.message});
+      res.error('Error al obtener usuarios', 500, {
+        error: err.message
+      });
     }
   }
 
   static Pagina_PQRS(req, res) {
 
-    //res.renderice('RegistroUsuario.html', {});
     res.renderice('PQRS.html', {});
   }
 
-  
+  static async obtener_producto(req, res) {
+
+    let sql = `SELECT * FROM productos `;
+
+    const params = [];
+
+    let productos = await executeQuery(sql, params);
+    res.json(productos)
+  }
+
+  static Pagina_Agregar_producto(req, res) {
+
+    res.renderice('Agregar_producto.html', {});
+  }
+
+  static async Agregar_producto(req, res) {
+    try {
+      const {
+        name,
+        type,
+        price,
+        code
+      } = req.body;
+
+      const sql = 'INSERT INTO productos (name, type, price, code) VALUES (?, ?, ?, ?)';
+      const params = [name, type, price, code];
+
+      await executeQuery(sql, params);
+      res.success(`producto ${name} agregado correctamente`);
+    } catch (err) {
+      res.error('Error al obtener pqrs', 500, {
+        error: err.message
+      });
+    }
+  }
+
+
+
+
+  static async PQRS(req, res) {
+    try {
+      const {
+        name,
+        email,
+        asunto,
+        message
+      } = req.body;
+
+      const sql = 'INSERT INTO pqrs (name, email, asunto, message) VALUES (?, ?, ?, ?)';
+      const params = [name, email, asunto, message];
+
+      await executeQuery(sql, params);
+      res.success(`pqrs ${name}`);
+    } catch (err) {
+      res.error('Error al obtener pqrs', 500, {
+        error: err.message
+      });
+    }
+  }
+
+
 
 }

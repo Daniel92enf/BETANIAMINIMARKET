@@ -1,75 +1,79 @@
+/* Estilos básicos del cuerpo */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-header {
-    background-color: #242a83;
-    color: white;
-    text-align: center;
-    padding: 1em 0;
-}
-
+/* Contenedor principal */
 .container {
     display: flex;
+    height: 100%;
 }
 
-nav {
-    width: 200px;
-    background: #f2f2f2;
-    padding: 15px;
-    border-right: 1px solid #ccc;
+/* Sidebar */
+.sidebar {
+    width: 250px;               /* Ancho del sidebar */
+    background-color: #333;     /* Color de fondo */
+    color: white;               /* Color de texto */
+    height: 100vh;              /* Altura completa de la ventana */
+    position: fixed;            /* Fijarlo al lado izquierdo */
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    box-sizing: border-box;
 }
 
-nav ul {
+.sidebar ul {
     list-style-type: none;
     padding: 0;
 }
 
-nav li {
-    margin: 10px 0;
+.sidebar ul li {
+    margin: 15px 0;
 }
 
-nav a {
+.sidebar ul li a {
+    color: white;
     text-decoration: none;
-    color: #333;
-    padding: 10px;
+    padding: 10px 20px;
     display: block;
-    border-radius: 4px;
+    font-size: 18px;
 }
 
-nav a:hover {
-    background-color: #ddd;
+.sidebar ul li a:hover {
+    background-color: #575757; /* Fondo cuando se pasa el ratón */
 }
 
-main {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: calc(100vh - 120px); /* Resta la altura del header y footer */
+/* Main Content */
+.main-content {
+    margin-left: 260px; /* Deja espacio para el sidebar */
     padding: 20px;
-    text-align: center; 
+    flex: 1;
 }
 
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #f2f2f2;
-}
+/* Imagen centrada en el main */
 .centro-imagen {
     display: block;
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-    max-width: 100%; /* Asegúrate de que la imagen no sobrepase el ancho del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-    
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
 }
+
+/* Header */
+header {
+    text-align: center;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+/* Footer */
 footer {
-    text-align: center; 
-    padding: 10px 0; 
-    background-color: #f2f2f2; 
-    margin-top: 20px; 
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
 }
-
-
-

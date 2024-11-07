@@ -36,6 +36,12 @@
             margin-bottom: 10px;
             box-sizing: border-box;
         }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
         input[type="submit"] {
             background-color: #333;
             color: #fff;
@@ -51,17 +57,21 @@
 </head>
 <body>
     <header>
-        <h1>Editar y Actualizar Productos</h1>
+        <h1>Agregar Productos</h1>
     </header>
     <div class="container">
-        <h2>Editar Producto</h2>
-        <form action="actualizar_producto.php" method="post">
+        <h2>Agregar Producto</h2>
+        <form id="add_product" action="/Agregar_producto" method="post">
             <label for="nombre">Nombre del Producto:</label>
-            <input type="text" id="nombre" name="nombre" value="Nombre del Producto 1" required>
-            <label for="especificaciones">Especificaciones:</label>
-            <textarea id="especificaciones" name="especificaciones" rows="4" required>Especificaciones del Producto 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod.</textarea>
-            <input type="submit" value="Actualizar Producto">
-        </form>
+            <input type="text" id="nombre" name="name" value="" placeholder=" Asigna nombre del Producto " required>
+            <label for="Tipo">Categoria:</label>
+            <input type="text" id="Tipo" name="type" value="" placeholder="Asigna una categoria Producto " required>
+            <label for="Cantidad">Precio:</label>
+            <input type="number" id="Cantidad" name="price" value="" placeholder="Asigna un precio al Producto " required>  
+            <label for="Codigo">Codigo:</label>
+            <input type="number" id="Codigo" name="code" value="" placeholder="Asigna un codigo al Producto" required>        
+        </form>        
+        <input type="submit" form="add_product" value="Actualizar Producto">
     </div>
 </body>
 </html>
